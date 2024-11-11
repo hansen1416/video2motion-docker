@@ -56,10 +56,6 @@ RUN /bin/bash -c ". activate tram" && \
     pip install gdown && \
     pip install oss2
 
-RUN /bin/bash -c ". activate tram" && \
-    pip install python-dotenv && \
-    python ./download_pretrain.py
-
 COPY DEVA-propagation.pth droid.pth sam_vit_h_4b8939.pth vimo_checkpoint.pth.tar ./data/pretrain/
 
 COPY J_regressor_extra.npy  J_regressor_h36m.npy kintree_table.pkl smpl_mean_params.npz ./data/smpl/
