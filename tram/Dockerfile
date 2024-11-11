@@ -66,6 +66,7 @@ RUN cd thirdparty/DROID-SLAM && \
 
 
 # RUN apt-get install libgl1
+# apt-get install -y libglib2.0-0
 
 # docker build -t tram .
 # docker run -it --rm --gpus all tram
