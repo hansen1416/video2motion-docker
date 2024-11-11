@@ -10,7 +10,7 @@ RUN apt-get update --fix-missing && \
 ARG CONDA_VER=latest
 ARG OS_TYPE=x86_64
 # Install miniconda to /miniconda
-RUN RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh"
+RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh"
 RUN bash Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh -b -p /miniconda 
 RUN rm Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh
 ENV PATH=/miniconda/bin:${PATH}
@@ -19,3 +19,14 @@ RUN conda init bash
 RUN bash -c "source ~/.bashrc"
 
 RUN conda create -n tram python=3.10 -y
+
+RUN conda activate tram
+
+RUN git clone --recursive https://github.com/yufu-wang/tram
+
+WORKDIR /tram
+
+RUN ls -lhs
+RUN conda list
+
+# docker run -it --rm --gpus all my_image_name
