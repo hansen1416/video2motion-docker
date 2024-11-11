@@ -28,7 +28,7 @@ RUN git clone --recursive https://github.com/hansen1416/tram
 WORKDIR /tram
 
 RUN /bin/bash -c ". activate tram" && \
-    conda install -y pandas && \ 
+    conda install -y torchaudio==2.4.0 -c pytorch -c nvidia && \ 
     pip install oss2
 
 # becareful with the driver version (eg. 535, 565) and the cuda version (eg. 11.8, 11.1), the cuda version could require a specific driver version
