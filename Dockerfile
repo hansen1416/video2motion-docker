@@ -37,25 +37,25 @@ RUN conda init bash && . ~/.bashrc \
 
 RUN conda install -y pytorch-scatter -c pyg \
     && conda install -c conda-forge suitesparse -y \
-    && pip install pulp \
-    && pip install supervision \
-    && pip install open3d \
-    && pip install opencv-python \
-    && pip install loguru \
-    && pip install chumpy \
-    && pip install einops \
-    && pip install plyfile \
-    && pip install pyrender \
-    && pip install segment_anything \
-    && pip install scikit-image \
-    && pip install smplx \
-    && pip install timm==0.6.7 \
-    && pip install evo \
-    && pip install pytorch-minimize \
-    && pip install imageio[ffmpeg] \
-    && pip install numpy==1.26 \
-    && pip install gdown \
-    && pip install oss2
+    && pip install -y pulp \
+    && pip install -y supervision \
+    && pip install -y open3d \
+    && pip install -y opencv-python \
+    && pip install -y loguru \
+    && pip install -y chumpy \
+    && pip install -y einops \
+    && pip install -y plyfile \
+    && pip install -y pyrender \
+    && pip install -y segment_anything \
+    && pip install -y scikit-image \
+    && pip install -y smplx \
+    && pip install -y timm==0.6.7 \
+    && pip install -y evo \
+    && pip install -y pytorch-minimize \
+    && pip install -y imageio[ffmpeg] \
+    && pip install -y numpy==1.26 \
+    && pip install -y gdown \
+    && pip install -y oss2
 
 # RUN apt-get install libgl1
 
