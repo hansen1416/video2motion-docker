@@ -13,7 +13,7 @@ ARG OS_TYPE=x86_64
 RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh"
 RUN bash Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh -b -p /miniconda 
 RUN rm Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh
-ENV PATH=/miniconda/bin:${PATH}
+ENV PATH /miniconda/bin:${PATH}
 RUN conda update -y conda
 # RUN conda init bash
 RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
