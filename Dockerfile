@@ -13,7 +13,7 @@ ARG OS_TYPE=x86_64
 RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh"
 RUN bash Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh -b -p /miniconda 
 RUN rm Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh
-ENV PATH /miniconda/bin:${PATH}
+ENV PATH=/miniconda/bin:${PATH}
 RUN conda update -y conda
 # RUN conda init bash
 RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
@@ -30,11 +30,11 @@ WORKDIR /tram
 
 # becareful with the driver version (eg. 535, 565) and the cuda version (eg. 11.8, 11.1), the cuda version could require a specific driver version
 # https://gist.github.com/MihailCosmin/affa6b1b71b43787e9228c25fe15aeba
-RUN install -y pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia
-RUN install 'git+https://github.com/hansen1416/detectron2.git@a59f05630a8f205756064244bf5beb8661f96180'
-RUN install "git+https://github.com/hansen1416/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47"
+RUN conda install -y pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia
+RUN pip install 'git+https://github.com/hansen1416/detectron2.git@a59f05630a8f205756064244bf5beb8661f96180'
+RUN pip install "git+https://github.com/hansen1416/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47"
 
-# RUN apt-get install -y libgl1
+# RUN apt-get install libgl1
 
 # docker build -t my_image_name .
 # docker run -it --rm --gpus all my_image_name
