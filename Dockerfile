@@ -15,8 +15,9 @@ RUN bash Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh -b -p /miniconda
 RUN rm Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh
 ENV PATH=/miniconda/bin:${PATH}
 RUN conda update -y conda
-RUN conda init bash
-RUN bash -c "source ~/.bashrc"
+# RUN conda init bash
+RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 
 RUN conda create -n tram python=3.10 -y
 
