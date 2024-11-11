@@ -35,7 +35,8 @@ RUN conda init bash && . ~/.bashrc \
     && pip install 'git+https://github.com/hansen1416/detectron2.git@a59f05630a8f205756064244bf5beb8661f96180' \
     && pip install "git+https://github.com/hansen1416/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47"
 
-RUN conda install -y pytorch-scatter -c pyg \
+RUN conda init bash && . ~/.bashrc \
+    conda install -y pytorch-scatter -c pyg \
     && conda install -c conda-forge suitesparse -y \
     && pip install pulp \
     && pip install supervision \
