@@ -60,6 +60,11 @@ COPY DEVA-propagation.pth droid.pth sam_vit_h_4b8939.pth vimo_checkpoint.pth.tar
 
 COPY J_regressor_extra.npy  J_regressor_h36m.npy kintree_table.pkl smpl_mean_params.npz ./data/smpl/
 
+RUN cd thirdparty/DROID-SLAM && \
+    python setup.py install
+
+
+
 # RUN apt-get install libgl1
 
 # docker build -t tram .
