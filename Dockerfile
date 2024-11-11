@@ -27,8 +27,11 @@ RUN git clone --recursive https://github.com/hansen1416/tram
 
 WORKDIR /tram
 
+SHELL ["/bin/bash", "-c"]
+
+RUN conda activate tram && conda install -c conda-forge suitesparse -y
+
 RUN /bin/bash -c ". activate tram" && \
-    conda install -y torchaudio==2.4.0 -c pytorch -c nvidia && \ 
     pip install oss2
 
 # becareful with the driver version (eg. 535, 565) and the cuda version (eg. 11.8, 11.1), the cuda version could require a specific driver version
