@@ -19,13 +19,12 @@ RUN conda update -y conda
 RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
-ARG env=tram
 
-RUN conda create -n {env} python=3.10 -y
-RUN echo "source activate {env}" > ~/.bashrc
-ENV PATH /miniconda/envs/{env}/bin:$PATH
+RUN conda create -n tram python=3.10 -y
+RUN echo "source activate tram" > ~/.bashrc
+ENV PATH /miniconda/envs/tram/bin:$PATH
 
-RUN git clone --recursive https://github.com/yufu-wang/tram
+RUN git clone --recursive https://github.com/hansen1416/tram
 
 WORKDIR /tram
 
