@@ -27,9 +27,7 @@ RUN git clone --recursive https://github.com/hansen1416/tram
 
 WORKDIR /tram
 
-SHELL ["/bin/bash", "-c"]
-
-RUN conda activate tram && conda install -c conda-forge suitesparse -y
+RUN conda run -n tram conda install -c conda-forge suitesparse -y
 
 RUN /bin/bash -c ". activate tram" && \
     pip install oss2
