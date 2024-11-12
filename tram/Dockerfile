@@ -1,27 +1,31 @@
 FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
+# /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
 RUN apt-get update --fix-missing && \
     apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git && \
+    apt-get install -y libgl1 libglib2.0-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 ## Conda
 # Use the above args during building https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
-ARG CONDA_VER=latest
+ARG CONDA_VER=py310_24.9.2-0
 ARG OS_TYPE=x86_64
 # Install miniconda to /miniconda
-RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh"
-RUN bash Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh -b -p /miniconda 
-RUN rm Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh
-ENV PATH /miniconda/bin:${PATH}
-RUN conda update -y conda
-# RUN conda init bash
-RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh" && \
+    bash Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh -b -p /miniconda && \
+    rm Miniconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh && \
+    echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
+# ENV PATH /miniconda/bin:${PATH}
+# RUN conda update -y conda
+# RUN conda init bash
+# RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+#     echo "conda activate base" >> ~/.bashrc
 
-RUN conda create -n tram python=3.10 -y
-RUN echo "source activate tram" > ~/.bashrc
-ENV PATH /miniconda/envs/tram/bin:$PATH
+RUN conda create -n tram python=3.10 -y && \
+    echo "source activate tram" > ~/.bashrc && \
+    PATH /miniconda/envs/tram/bin:$PATH
 
 RUN git clone --recursive https://github.com/hansen1416/tram
 
@@ -58,16 +62,10 @@ RUN /bin/bash -c ". activate tram" && \
 
 COPY DEVA-propagation.pth droid.pth sam_vit_h_4b8939.pth vimo_checkpoint.pth.tar ./data/pretrain/
 
-COPY J_regressor_extra.npy  J_regressor_h36m.npy kintree_table.pkl smpl_mean_params.npz ./data/smpl/
+COPY J_regressor_extra.npy J_regressor_h36m.npy kintree_table.pkl smpl_mean_params.npz ./data/smpl/
 
 RUN cd thirdparty/DROID-SLAM && \
     python setup.py install
-
-# /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
-RUN apt-get update && \
-    apt-get install -y libgl1 libglib2.0-0 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
 
 # docker build -t tram .
 # docker run -it --rm --gpus all tram
