@@ -68,6 +68,8 @@ COPY DEVA-propagation.pth droid.pth sam_vit_h_4b8939.pth vimo_checkpoint.pth.tar
 
 COPY SMPL_FEMALE.pkl SMPL_MALE.pkl SMPL_NEUTRAL.pkl ./data/smpl/
 
+# ENV TORCH_CUDA_ARCH_LIST="Turing Ampere Ada Hopper"
+# ENV TORCH_CUDA_ARCH_LIST=Turing
 # RUN /bin/bash -c ". activate tram" && \
 #     pip install "git+https://github.com/hansen1416/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47"
 
