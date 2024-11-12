@@ -2,7 +2,7 @@ FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
 # /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
 RUN apt-get update --fix-missing && \
-    apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git && \
+    apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim && \
     apt-get install -y libgl1 libglib2.0-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -41,6 +41,7 @@ RUN conda run -n tram conda install -y pytorch==2.4.0 torchvision==0.19.0 torcha
 
 RUN /bin/bash -c ". activate tram" && \
     pip install 'git+https://github.com/hansen1416/detectron2.git@a59f05630a8f205756064244bf5beb8661f96180' && \
+    pip install "git+https://github.com/hansen1416/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47" && \
     pip install pulp && \
     pip install supervision && \
     pip install open3d && \
@@ -67,11 +68,6 @@ RUN cd thirdparty/DROID-SLAM && \
 COPY DEVA-propagation.pth droid.pth sam_vit_h_4b8939.pth vimo_checkpoint.pth.tar ./data/pretrain/
 
 COPY SMPL_FEMALE.pkl SMPL_MALE.pkl SMPL_NEUTRAL.pkl ./data/smpl/
-
-ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 9.0"
-
-RUN /bin/bash -c ". activate tram" && \
-    pip install "git+https://github.com/hansen1416/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47"
 
 # docker build -t hansen1416/tram .
 # docker run -it --rm --gpus all hansen1416/tram
