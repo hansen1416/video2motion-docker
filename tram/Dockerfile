@@ -23,13 +23,13 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
 # RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 #     echo "conda activate base" >> ~/.bashrc
 
-# RUN conda create -n tram python=3.10 -y && \
-#     echo "source activate tram" > ~/.bashrc && \
-#     PATH /miniconda/envs/tram/bin:$PATH
+RUN conda create -n tram python=3.10 -y && \
+    echo "source activate tram" > ~/.bashrc && \
+    PATH /miniconda/envs/tram/bin:$PATH
 
-# RUN git clone --recursive https://github.com/hansen1416/tram
+RUN git clone --recursive https://github.com/hansen1416/tram
 
-# WORKDIR /tram
+WORKDIR /tram
 
 # # becareful with the driver version (eg. 535, 565) and the cuda version (eg. 11.8, 11.1), the cuda version could require a specific driver version
 # # https://gist.github.com/MihailCosmin/affa6b1b71b43787e9228c25fe15aeba
@@ -67,5 +67,5 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
 # RUN cd thirdparty/DROID-SLAM && \
 #     python setup.py install
 
-# docker build -t tram .
-# docker run -it --rm --gpus all tram
+# docker build -t hansen1416/tram .
+# docker run -it --rm --gpus all hansen1416/tram
