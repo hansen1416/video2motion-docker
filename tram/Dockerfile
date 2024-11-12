@@ -25,8 +25,9 @@ ENV PATH /miniconda/bin:${PATH}
 #     echo "conda activate base" >> ~/.bashrc
 
 RUN conda create -n tram python=3.10 -y && \
-    echo "source activate tram" > ~/.bashrc && \
-    PATH /miniconda/envs/tram/bin:$PATH
+    echo "source activate tram" > ~/.bashrc
+
+ENV PATH /miniconda/envs/tram/bin:$PATH
 
 RUN git clone --recursive https://github.com/hansen1416/tram
 
