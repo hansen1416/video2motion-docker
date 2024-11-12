@@ -63,10 +63,11 @@ COPY J_regressor_extra.npy  J_regressor_h36m.npy kintree_table.pkl smpl_mean_par
 RUN cd thirdparty/DROID-SLAM && \
     python setup.py install
 
-
-
-# RUN apt-get install libgl1
-# apt-get install -y libglib2.0-0
+# /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
+RUN apt-get update && \
+    apt-get install -y libgl1 libglib2.0-0 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # docker build -t tram .
 # docker run -it --rm --gpus all tram
