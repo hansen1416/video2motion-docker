@@ -23,7 +23,7 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
 # RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 #     echo "conda activate base" >> ~/.bashrc
 
-RUN conda create -n tram python=3.10 -y && \
+RUN conda init bash && conda create -n tram python=3.10 -y && \
     echo "source activate tram" > ~/.bashrc && \
     PATH /miniconda/envs/tram/bin:$PATH
 
