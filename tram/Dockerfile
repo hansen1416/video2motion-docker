@@ -33,6 +33,8 @@ RUN git clone --recursive https://github.com/hansen1416/tram
 
 WORKDIR /tram
 
+ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 9.0"
+
 # becareful with the driver version (eg. 535, 565) and the cuda version (eg. 11.8, 11.1), the cuda version could require a specific driver version
 # https://gist.github.com/MihailCosmin/affa6b1b71b43787e9228c25fe15aeba
 RUN conda run -n tram conda install -y pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia && \
