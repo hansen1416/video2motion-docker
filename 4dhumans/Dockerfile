@@ -2,7 +2,7 @@ FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
 # /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
 RUN apt-get update --fix-missing && \
-    apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim libgl1 libglib2.0-0 && \
+    apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim libgl1 libglib2.0-0 libglfw3-dev libgles2-mesa-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -31,9 +31,7 @@ ENV PATH /miniconda/envs/4D-humans/bin:$PATH
 ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 9.0"
 
 RUN /bin/bash -c ". activate 4D-humans" && \
-    pip install git+https://github.com/brjathu/PHALP.git
-
-# apt-get install libglfw3-dev libgles2-mesa-dev
+    pip install git+https://github.com/hansen1416/PHALP.git
 
 COPY SMPL_NEUTRAL.pkl ./data/
 COPY SMPL_NEUTRAL.pkl basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
