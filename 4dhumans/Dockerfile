@@ -2,8 +2,7 @@ FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
 # /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
 RUN apt-get update --fix-missing && \
-    apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim && \
-    apt-get install -y libgl1 libglib2.0-0 && \
+    apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim libgl1 libglib2.0-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
