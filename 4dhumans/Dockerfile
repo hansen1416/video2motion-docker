@@ -28,6 +28,8 @@ RUN conda env create -f environment.yml && \
 
 ENV PATH /miniconda/envs/4D-humans/bin:$PATH
 
+ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 9.0"
+
 RUN /bin/bash -c ". activate 4D-humans" && \
     pip install git+https://github.com/brjathu/PHALP.git
 
