@@ -19,7 +19,7 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
 
 ENV PATH /miniconda/bin:${PATH}
 
-RUN git clone https://github.com/shubham-goel/4D-Humans.git
+RUN git clone https://github.com/hansen1416/4D-Humans.git
 
 WORKDIR /4D-Humans
 
