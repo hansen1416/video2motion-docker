@@ -18,20 +18,16 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
     echo "conda activate base" >> ~/.bashrc
 
 ENV PATH /miniconda/bin:${PATH}
-# RUN conda update -y conda
-# RUN conda init bash
-# RUN echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-#     echo "conda activate base" >> ~/.bashrc
 
-# git clone https://github.com/shubham-goel/4D-Humans.git
-# cd 4D-Humans
-# conda env create -f environment.yml
-# conda activate 4D-humans
+RUN git clone https://github.com/shubham-goel/4D-Humans.git
+
+WORKDIR /4D-Humans
+
+RUN conda env create -f environment.yml && \
+    echo "source activate 4D-humans" > ~/.bashrc
 
 ######################################################################
 
-# RUN conda create -n tram python=3.10 -y && \
-#     echo "source activate tram" > ~/.bashrc
 
 # ENV PATH /miniconda/envs/tram/bin:$PATH
 
@@ -77,8 +73,8 @@ ENV PATH /miniconda/bin:${PATH}
 
 # COPY SMPL_FEMALE.pkl SMPL_MALE.pkl SMPL_NEUTRAL.pkl ./data/smpl/
 
-# # docker build -t hansen1416/tram .
-# # docker run -it --rm --gpus all hansen1416/tram
+# # docker build -t hansen1416/4dhumans .
+# # docker run -it --rm --gpus all hansen1416/4dhumans
 # # vim /miniconda/envs/tram/lib/python3.10/site-packages/chumpy/__init__.py
 # # from numpy import nan, inf
 # # import numpy as np
