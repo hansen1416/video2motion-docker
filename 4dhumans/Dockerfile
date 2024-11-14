@@ -33,6 +33,8 @@ ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 9.0"
 RUN /bin/bash -c ". activate 4D-humans" && \
     pip install git+https://github.com/brjathu/PHALP.git
 
+# apt-get install libglfw3-dev libgles2-mesa-dev
+
 COPY SMPL_NEUTRAL.pkl ./data/
 COPY SMPL_NEUTRAL.pkl basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
 
