@@ -26,6 +26,8 @@ WORKDIR /4D-Humans
 RUN conda env create -f environment.yml && \
     echo "source activate 4D-humans" > ~/.bashrc
 
+ENV PATH /miniconda/envs/4D-humans/bin:$PATH
+
 ######################################################################
 
 
