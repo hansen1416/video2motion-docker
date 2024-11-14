@@ -28,6 +28,9 @@ RUN conda env create -f environment.yml && \
 
 ENV PATH /miniconda/envs/4D-humans/bin:$PATH
 
+RUN /bin/bash -c ". activate 4D-humans" && \
+    pip install git+https://github.com/brjathu/PHALP.git
+
 ######################################################################
 
 
