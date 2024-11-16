@@ -36,6 +36,12 @@ RUN /bin/bash -c ". activate 4D-humans" && \
 COPY SMPL_NEUTRAL.pkl ./data/
 COPY SMPL_NEUTRAL.pkl basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
 
+# create ~/.cache/4DHumans/logs/train/multiruns/hmr2/0/ if not exists
+RUN mkdir -p ~/.cache/4DHumans/logs/train/multiruns/hmr2/0/
+
+COPY dataset_config.yaml ~/.cache/4DHumans/logs/train/multiruns/hmr2/0/
+COPY model_config.yaml ~/.cache/4DHumans/logs/train/multiruns/hmr2/0/
+
 ######################################################################
 
 
