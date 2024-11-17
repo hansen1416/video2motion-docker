@@ -33,65 +33,18 @@ ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 9.0"
 RUN /bin/bash -c ". activate 4D-humans" && \
     pip install git+https://github.com/hansen1416/PHALP.git
 
-COPY SMPL_NEUTRAL.pkl ./data/
-COPY SMPL_NEUTRAL.pkl basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
+COPY basicModel_neutral_lbs_10_207_0_v1.0.0.pkl ./data/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
+COPY basicModel_neutral_lbs_10_207_0_v1.0.0.pkl basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
 
-# create ~/.cache/4DHumans/logs/train/multiruns/hmr2/0/ if not exists
-RUN mkdir -p ~/.cache/4DHumans/logs/train/multiruns/hmr2/0/
-
-COPY dataset_config.yaml ~/.cache/4DHumans/logs/train/multiruns/hmr2/0/
-COPY model_config.yaml ~/.cache/4DHumans/logs/train/multiruns/hmr2/0/
+COPY dataset_config.yaml ./data/
+COPY model_config.yaml ./data/
+COPY epoch=35-step=1000000.ckpt ./data/
 
 ######################################################################
 
-
-# ENV PATH /miniconda/envs/tram/bin:$PATH
-
-# RUN git clone --recursive https://github.com/hansen1416/tram
-
-# WORKDIR /tram
-
-# ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 9.0"
-
-# # becareful with the driver version (eg. 535, 565) and the cuda version (eg. 11.8, 11.1), the cuda version could require a specific driver version
-# # https://gist.github.com/MihailCosmin/affa6b1b71b43787e9228c25fe15aeba
-# RUN conda run -n tram conda install -y pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia && \
-#     conda run -n tram conda install -y pytorch-scatter -c pyg && \
-#     conda run -n tram conda install -c conda-forge suitesparse -y
-
-# RUN /bin/bash -c ". activate tram" && \
-#     pip install 'git+https://github.com/hansen1416/detectron2.git@a59f05630a8f205756064244bf5beb8661f96180' && \
-#     pip install "git+https://github.com/hansen1416/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47" && \
-#     pip install pulp && \
-#     pip install supervision && \
-#     pip install open3d && \
-#     pip install opencv-python && \
-#     pip install loguru && \
-#     pip install chumpy && \
-#     pip install einops && \
-#     pip install plyfile && \
-#     pip install pyrender && \
-#     pip install segment_anything && \
-#     pip install scikit-image && \
-#     pip install smplx && \
-#     pip install timm==0.6.7 && \
-#     pip install evo && \
-#     pip install pytorch-minimize && \
-#     pip install imageio[ffmpeg] && \
-#     pip install numpy==1.26 && \
-#     pip install gdown && \
-#     pip install oss2
-
-# RUN cd thirdparty/DROID-SLAM && \
-#     python setup.py install
-
-# COPY DEVA-propagation.pth droid.pth sam_vit_h_4b8939.pth vimo_checkpoint.pth.tar ./data/pretrain/
-
-# COPY SMPL_FEMALE.pkl SMPL_MALE.pkl SMPL_NEUTRAL.pkl ./data/smpl/
-
-# # docker build -t hansen1416/4dhumans .
-# # docker run -it --rm --gpus all hansen1416/4dhumans
-# # vim /miniconda/envs/tram/lib/python3.10/site-packages/chumpy/__init__.py
-# # from numpy import nan, inf
-# # import numpy as np
-# # unicode=np.unicode_
+# docker build -t hansen1416/4dhumans .
+# docker run -it --rm --gpus all hansen1416/4dhumans
+# vim /miniconda/envs/tram/lib/python3.10/site-packages/chumpy/__init__.py
+# from numpy import nan, inf
+# import numpy as np
+# unicode=np.unicode_
