@@ -42,6 +42,24 @@ COPY epoch=35-step=1000000.ckpt ./data/
 
 ######################################################################
 
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/3D/head_faces.npy to /root/.cache/phalp/3D/head_faces.npy
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/3D/mean_std.npy to /root/.cache/phalp/3D/mean_std.npy
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/3D/smpl_mean_params.npz to /root/.cache/phalp/3D/smpl_mean_params.npz
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/3D/SMPL_to_J19.pkl to /root/.cache/phalp/3D/SMPL_to_J19.pkl
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/3D/texture.npz to /root/.cache/phalp/3D/texture.npz
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/bmap_256.npy to /root/.cache/phalp/3D/bmap_256.npy
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/fmap_256.npy to /root/.cache/phalp/3D/fmap_256.npy
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/weights/hmar_v2_weights.pth to /root/.cache/phalp/weights/hmar_v2_weights.pth
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/weights/pose_predictor_40006.ckpt to /root/.cache/phalp/weights/pose_predictor.pth
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/weights/config_40006.yaml to /root/.cache/phalp/weights/pose_predictor.yaml
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/ava/ava_labels.pkl to /root/.cache/phalp/ava/ava_labels.pkl
+# https://people.eecs.berkeley.edu/~jathushan/projects/phalp/ava/ava_class_mappping.pkl to /root/.cache/phalp/ava/ava_class_mapping.pkl
+# "https://download.pytorch.org/models/resnet50-19c8e357.pth" to /root/.cache/torch/hub/checkpoints/resnet50-19c8e357.pth
+
+# https://people.eecs.berkeley.edu/~jathushan/projects/4dhumans/hmr2_data.tar.gz to /root/.cache/4DHumans/hmr2_data.tar.gz
+
+# python track.py video.source="example_data/videos/gymnasts.mp4"
+
 # docker build -t hansen1416/4dhumans .
 # docker run -it --rm --gpus all hansen1416/4dhumans
 # vim /miniconda/envs/tram/lib/python3.10/site-packages/chumpy/__init__.py
