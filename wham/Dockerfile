@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+FROM nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
 
 # /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
 RUN apt-get update --fix-missing && \
@@ -24,7 +24,7 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
 
 # ```bash
 # # Clone the repo
-# git clone https://github.com/yohanshin/WHAM.git --recursive
+# git clone https://github.com/hansen1416/wham-video2motion.git --recursive
 # cd WHAM/
 
 # # Create Conda environment
@@ -56,3 +56,6 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
 
 # pip install .
 # ```
+
+# docker build -t hansen1416/wham .
+# docker run -d --rm --gpus all hansen1416/wham tail -f /dev/null
