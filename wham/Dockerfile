@@ -17,6 +17,20 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
     echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
+ENV PATH /miniconda/bin:${PATH}
+
+RUN conda create -n wham python=3.9 -y && \
+    echo "source activate wham" > ~/.bashrc
+
+ENV PATH /miniconda/envs/wham/bin:$PATH
+
+RUN git clone https://github.com/hansen1416/wham-video2motion.git --recursive
+
+WORKDIR /WHAM
+
+RUN conda run -n tram conda install -y pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
+
+
 
 # # Installation
 
@@ -24,7 +38,7 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
 
 # ```bash
 # # Clone the repo
-# git clone https://github.com/hansen1416/wham-video2motion.git --recursive
+# 
 # cd WHAM/
 
 # # Create Conda environment
@@ -33,10 +47,6 @@ RUN curl -LO "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VER}-Linux-$
 
 # # Install PyTorch libraries
 # conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
-
-# # Install PyTorch3D (optional) for visualization
-# conda install -c fvcore -c iopath -c conda-forge fvcore iopath
-# pip install pytorch3d -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/py39_cu113_pyt1110/download.html
 
 # # Install WHAM dependencies
 # pip install -r requirements.txt
