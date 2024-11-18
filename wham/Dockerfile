@@ -41,9 +41,9 @@ RUN /bin/bash -c ". activate wham" && \
     cd third-party/DPVO && \
     wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip && \
     unzip eigen-3.4.0.zip -d thirdparty && rm -rf eigen-3.4.0.zip && \
-    conda install pytorch-scatter -c rusty1s && \
-    conda install cudatoolkit-dev=11.3.1 -c conda-forge && \
-    conda install -c conda-forge gxx=9.5 && \
+    conda install -y pytorch-scatter -c rusty1s && \
+    conda install -y cudatoolkit-dev=11.3.1 -c conda-forge && \
+    conda install -c conda-forge gxx=9.5 -y && \
     pip install .
 
 # # Installation
