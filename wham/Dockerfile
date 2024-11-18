@@ -24,11 +24,11 @@ RUN conda create -n wham python=3.9 -y && \
 
 ENV PATH /miniconda/envs/wham/bin:$PATH
 
-RUN git clone https://github.com/hansen1416/wham-video2motion.git --recursive
-
 RUN conda run -n wham conda install -y pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
 
-WORKDIR /wham-video2motion
+RUN git clone https://github.com/hansen1416/WHAM.git --recursive
+
+WORKDIR /WHAM
 
 RUN /bin/bash -c ". activate wham" && \
     pip install -r requirements.txt
