@@ -38,7 +38,11 @@ RUN apt-get update && \
 RUN /bin/bash -c ". activate wham" && \
     pip install -r requirements.txt && \
     pip install -v -e third-party/ViTPose && \
-    conda install -y pytorch-scatter=2.0.9 -c rusty1s && \
+    conda install -y pytorch-scatter=2.0.9 -c rusty1s
+
+ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 9.0"
+
+RUN /bin/bash -c ". activate wham" && \
     cd third-party/DPVO && \
     wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip && \
     unzip eigen-3.4.0.zip -d thirdparty && rm -rf eigen-3.4.0.zip && \
