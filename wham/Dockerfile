@@ -31,15 +31,17 @@ RUN conda run -n wham conda install -y pytorch==1.11.0 torchvision==0.12.0 torch
 WORKDIR /wham-video2motion
 
 RUN /bin/bash -c ". activate wham" && \
-    pip install -r requirements.txt && \
-    pip install -v -e third-party/ViTPose && \
-    cd third-party/DPVO && \
-    wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip && \
-    unzip eigen-3.4.0.zip -d thirdparty && rm -rf eigen-3.4.0.zip && \
-    conda install pytorch-scatter=2.0.9 -c rusty1s && \
-    conda install cudatoolkit-dev=11.3.1 -c conda-forge && \
-    conda install -c conda-forge gxx=9.5 && \
-    pip install .
+    pip install -r requirements.txt
+
+# RUN /bin/bash -c ". activate wham" && \
+#     pip install -v -e third-party/ViTPose && \
+#     cd third-party/DPVO && \
+#     wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip && \
+#     unzip eigen-3.4.0.zip -d thirdparty && rm -rf eigen-3.4.0.zip && \
+#     conda install pytorch-scatter=2.0.9 -c rusty1s && \
+#     conda install cudatoolkit-dev=11.3.1 -c conda-forge && \
+#     conda install -c conda-forge gxx=9.5 && \
+#     pip install .
 
 # # Installation
 
