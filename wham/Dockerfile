@@ -26,8 +26,6 @@ ENV PATH /miniconda/envs/wham/bin:$PATH
 
 RUN git clone https://github.com/hansen1416/wham-video2motion.git --recursive
 
-WORKDIR /WHAM
-
 RUN conda run -n wham conda install -y pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
 
 WORKDIR /wham-video2motion
@@ -79,5 +77,5 @@ RUN /bin/bash -c ". activate wham" && \
 # ```
 
 # docker build -t hansen1416/wham .
-# docker run -d --rm --gpus all  hansen1416/wham tail -f /dev/null
-# docker exec -it 0e945131dd75 /bin/bash
+# docker run -d --rm --gpus all --name wham hansen1416/wham tail -f /dev/null
+# docker exec -it wham /bin/bash
