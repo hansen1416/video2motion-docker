@@ -30,6 +30,8 @@ WORKDIR /WHAM
 
 RUN conda run -n wham conda install -y pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
 
+WORKDIR /wham-video2motion
+
 RUN /bin/bash -c ". activate wham" && \
     pip install -r requirements.txt && \
     pip install -v -e third-party/ViTPose && \
