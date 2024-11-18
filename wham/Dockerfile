@@ -28,7 +28,7 @@ RUN git clone https://github.com/hansen1416/wham-video2motion.git --recursive
 
 WORKDIR /WHAM
 
-RUN conda run -n tram conda install -y pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
+RUN conda run -n wham conda install -y pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
 
 
 
