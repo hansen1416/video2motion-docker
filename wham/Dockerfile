@@ -2,7 +2,7 @@ FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
 
 # /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
 RUN apt-get update --fix-missing && \
-    apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim && \
+    apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -29,11 +29,6 @@ RUN conda run -n wham conda install -y pytorch==1.11.0 torchvision==0.12.0 torch
 RUN git clone https://github.com/hansen1416/WHAM.git --recursive
 
 WORKDIR /WHAM
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends unzip && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
 
 RUN /bin/bash -c ". activate wham" && \
     pip install -r requirements.txt && \
