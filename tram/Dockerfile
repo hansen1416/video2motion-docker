@@ -72,7 +72,8 @@ COPY DEVA-propagation.pth droid.pth sam_vit_h_4b8939.pth vimo_checkpoint.pth.tar
 COPY SMPL_FEMALE.pkl SMPL_MALE.pkl SMPL_NEUTRAL.pkl ./data/smpl/
 
 # docker build -t hansen1416/tram .
-# docker run -it --rm --gpus all hansen1416/tram
+# docker run -d --rm --gpus all hansen1416/tram
+# docker exec -it tram /bin/bash
 # vim /miniconda/envs/tram/lib/python3.10/site-packages/chumpy/__init__.py
 # from numpy import nan, inf
 # import numpy as np
