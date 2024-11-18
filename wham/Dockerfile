@@ -30,6 +30,11 @@ RUN git clone https://github.com/hansen1416/WHAM.git --recursive
 
 WORKDIR /WHAM
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends unzip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN /bin/bash -c ". activate wham" && \
     pip install -r requirements.txt && \
     pip install -v -e third-party/ViTPose && \
