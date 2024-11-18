@@ -43,9 +43,10 @@ RUN /bin/bash -c ". activate wham" && \
     unzip eigen-3.4.0.zip -d thirdparty && rm -rf eigen-3.4.0.zip
 
 RUN /bin/bash -c ". activate wham" && \
-    conda install -y pytorch-scatter -c rusty1s && \
-    conda install -y cudatoolkit-dev -c conda-forge && \
-    conda install -c conda-forge gxx=9.5 -y && \
+    conda install -y pytorch-scatter=2.0.9 -c rusty1s && \
+    # conda install -y cudatoolkit-dev=11.3.1 -c conda-forge && \
+    # conda install -c conda-forge gxx=9.5 -y && \
+    cd third-party/DPVO && \
     pip install .
 
 # # Installation
