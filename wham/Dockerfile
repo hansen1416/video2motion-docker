@@ -3,6 +3,7 @@ FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
 # /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
 RUN apt-get update --fix-missing && \
     apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim unzip && \
+    apt-get install -y libgl1 libglib2.0-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
