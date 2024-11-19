@@ -36,9 +36,7 @@ RUN /bin/bash -c ". activate 4D-humans" && \
 COPY basicModel_neutral_lbs_10_207_0_v1.0.0.pkl ./data/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
 COPY basicModel_neutral_lbs_10_207_0_v1.0.0.pkl basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
 
-COPY dataset_config.yaml ./data/
-COPY model_config.yaml ./data/
-COPY epoch=35-step=1000000.ckpt ./data/
+COPY hmr2_data.tar.gz ./hmr2_data.tar.gz
 
 ######################################################################
 
@@ -61,8 +59,8 @@ COPY epoch=35-step=1000000.ckpt ./data/
 # python track.py video.source="example_data/videos/gymnasts.mp4"
 
 # docker build -t hansen1416/4dhumans .
-# docker run -it --rm --gpus all hansen1416/4dhumans
-# vim /miniconda/envs/tram/lib/python3.10/site-packages/chumpy/__init__.py
-# from numpy import nan, inf
-# import numpy as np
-# unicode=np.unicode_
+# docker run -d --rm --gpus all --name 4dhumans hansen1416/4dhumans tail -f /dev/null
+# docker exec -it 4dhumans /bin/bash
+
+# cd /root/.cache/4DHumans
+# tar -xvf hmr2_data.tar.gz

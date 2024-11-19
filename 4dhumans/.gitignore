@@ -1,14 +1,2 @@
 basicModel_neutral_lbs_10_207_0_v1.0.0.pkl
-dataset_config.yaml
-model_config.yaml
-bmap_256.npy
-fmap_256.npy
-fmap_256.npy
-head_faces.npy
-hmar_v2_weights.pth
-mean_std.npy
-pose_predictor_40006.ckpt
-smpl_mean_params.npz
-SMPL_to_J19.pkl
-texture.npz
-epoch=35-step=1000000.ckpt
+hmr2_data.tar.gz
