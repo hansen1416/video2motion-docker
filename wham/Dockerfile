@@ -1,5 +1,6 @@
 FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
 
+ENV DEBIAN_FRONTEND=noninteractive
 # /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
 RUN apt-get update --fix-missing && \
     apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim unzip && \
