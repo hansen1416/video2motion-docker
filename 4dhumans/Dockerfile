@@ -62,5 +62,7 @@ COPY hmr2_data.tar.gz ./hmr2_data.tar.gz
 # docker run -d --rm --gpus all --name 4dhumans hansen1416/4dhumans tail -f /dev/null
 # docker exec -it 4dhumans /bin/bash
 
+# mkdir /root/.cache/4DHumans
 # cd /root/.cache/4DHumans
+# mv /4D-Humans/hmr2_data.tar.gz ./
 # tar -xvf hmr2_data.tar.gz
