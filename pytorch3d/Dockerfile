@@ -8,3 +8,10 @@ FROM pytorch/pytorch:2.4.0-cuda11.8-cudnn9-runtime
 
 
 RUN conda install -c fvcore -c iopath -c conda-forge fvcore iopath
+
+RUN conda install pytorch3d=0.7.0 -c pytorch3d
+
+
+# docker build -t hansen1416/pytorch3d .
+# docker run -d --rm --gpus all --name pytorch3d hansen1416/pytorch3d tail -f /dev/null
+# docker exec -it pytorch3d /bin/bash
