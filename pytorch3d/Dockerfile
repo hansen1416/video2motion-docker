@@ -1,17 +1,39 @@
-FROM pytorch/pytorch:2.4.0-cuda11.8-cudnn9-runtime
+FROM tensorflow/tensorflow:2.0.0-gpu-py3-jupyter
 
-RUN conda install -c fvcore -c iopath -c conda-forge fvcore iopath
+RUN cd ~/Downloads
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+RUN bash ~/miniconda.sh -b -p $HOME/miniconda
+RUN $HOME/miniconda/bin/conda init
+RUN source ~/.bashrc
+ENV PATH /root/miniconda/bin:$PATH
 
-RUN conda install pytorch3d=0.7.8 -c pytorch3d
+RUN apt-get install -y vim-tiny
 
-RUN pip install pycocotools
+RUN conda update --all
 
-# # /var/lib/apt/lists/ directory. This directory contains cached information about available packages.
-# RUN apt-get update --fix-missing && \
-#     apt-get install -y --no-install-recommends wget bzip2 ca-certificates curl git vim libgl1 libglib2.0-0 libglfw3-dev libgles2-mesa-dev && \
-#     apt-get clean && \
-#     rm -rf /var/lib/apt/lists/*
+RUN conda create -y -n pytorch3d python=3.6
+RUN echo "conda activate pytorch3d" >> ~/.bashrc
 
-# docker build -t hansen1416/pytorch3d .
-# docker run -d --gpus all --name pytorch3d -v /mnt:/mnt hansen1416/pytorch3d tail -f /dev/null
-# docker exec -it pytorch3d /bin/bash
+RUN conda install --name pytorch3d --yes -c pytorch\
+    pytorch \
+    torchvision \
+    cudatoolkit=10.0
+
+RUN conda install --name pytorch3d --yes -c conda-forge -c fvcore fvcore
+
+RUN conda install --name pytorch3d --yes jupyter
+
+#RUN pip install --upgrade pip && \
+RUN /bin/bash -c ". activate pytorch3d && \
+    pip install --upgrade pip && \
+    pip install \
+    scikit-image \
+    matplotlib \
+    imageio \
+    black \
+    isort \
+    flake8 \
+    flake8-bugbear \
+    flake8-comprehensions"
+
+RUN conda install --name pytorch3d pytorch3d -c pytorch3d-nightly
